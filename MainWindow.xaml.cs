@@ -60,7 +60,7 @@ namespace WBF_mozifoglalas
                     = ((mozi)DataGrid.SelectedItem).szabadhelyek - 1;
                 DataGrid.Items.Refresh();
             }
-            if (szabadhelyek in mozi is null)
+           
            
 
 
