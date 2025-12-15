@@ -10,7 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
-namespace WBF_mozifoglalas
+namespace WPFmozi
 {
     public class mozi
     {
@@ -66,9 +66,15 @@ namespace WBF_mozifoglalas
 
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void vanhely(object sender, RoutedEventArgs e)
         {
-
+            List<mozi>csakaholvanhely= new List<mozi>();
+            foreach (var mozi in mozifilmek) { 
+            if(mozi.szabadhelyek>0)
+                    csakaholvanhely.Add(mozi);
+            }
+            DataGrid.ItemsSource=csakaholvanhely;
+            DataGrid.Items.Refresh();
         }
     }
 }
