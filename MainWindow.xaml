@@ -6,22 +6,77 @@
         xmlns:local="clr-namespace:WPFmozi"
         mc:Ignorable="d"
          Title="Mozi jegyfoglalás" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Mozi Jegyfoglaló rendszer" FontSize="20"
-               FontWeight="Bold"
-               HorizontalAlignment="Center"/>
-        <DataGrid x:Name="dataGrid" Grid.Row="1"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5">
-            <Button Content="Adatok betöltése" Width="120" Click="adatokbetoltese"/>
-            <Button Content="Foglalás" Click="foglalas" Height="31" Width="115"/>
-        </StackPanel>
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
+        
+        <Label Content="Mozi jegyfoglaló rendszer"
+               FontSize="22"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,10"/>
+
+        
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Margin="0,5,0,5">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Film címe" Binding="{Binding cim}" Width="*"/>
+                <DataGridTextColumn Header="Időpont" Binding="{Binding idopont}" Width="150"/>
+                <DataGridTextColumn Header="Terem" Binding="{Binding terem}" Width="120"/>
+                <DataGridTextColumn Header="Szabad helyek" Binding="{Binding szabadhelyek}" Width="120"/>
+                <DataGridCheckBoxColumn Header="3D" Binding="{Binding _3D}" Width="60"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+       
+        <WrapPanel Grid.Row="2" Margin="0,10">
+            <Button Content="Adatok betöltése" Click="adatokbetoltese" Margin="5"/>
+            <Button Content="Foglalás" Click="foglalas" Margin="5"/>
+            <Button Content="Csak ahol van hely" Click="csakVanHely" Margin="5"/>
+            <Button Content="Legnépszerűbb" Click="legnepszerubb" Margin="5"/>
+            <Button Content="Átlagos szabad hely" Click="atlagSzabadHely" Margin="5"/>
+            <Button Content="Csak 3D-s filmek" Click="csak3D" Margin="5"/>
+        </WrapPanel>
+
+        <GroupBox Header="Új előadás hozzáadása" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Margin="0,49,0,0">
+            <GroupBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.096"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GroupBox.RenderTransform>
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Film címe"/>
+                    <TextBox x:Name="txtCim"/>
+                    <TextBlock Text="Terem"/>
+                    <TextBox x:Name="txtTerem"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Időpont"/>
+                    <TextBox x:Name="txtIdopont"/>
+                    <TextBlock Text="Szabad helyek"/>
+                    <TextBox x:Name="txtSzabad"/>
+                    <CheckBox x:Name="chk3D" Content="3D-s vetítés"/>
+                    <Button Content="Hozzáadás" Click="hozzaadas" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
